@@ -1,4 +1,4 @@
-# Jade, CoffeeScript and Grunt Skelton for DocPad
+# Jade, CoffeeScript and Grunt Skeleton for DocPad
 
 ## License
 
