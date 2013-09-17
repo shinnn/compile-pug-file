@@ -1,20 +1,9 @@
-# Export our DocPad Configuration
-module.exports = {
+docpadConfig = {
 
 	# =================================
 	# Template Data
 	# These are variables that will be accessible via our templates
 	# To access one of these within our templates, refer to the FAQ: https://github.com/bevry/docpad/wiki/FAQ
-  
-  documentsPaths: [
-    'documents'
-    'pages'
-  ]
-  
-  layoutsPaths: [
-    'layouts'
-    'templates'
-  ]
 
 	templateData:
 
@@ -50,6 +39,7 @@ module.exports = {
 				'/scripts/script.js'
 			]
 
+
 		# -----------------------------
 		# Helper Functions
 
@@ -74,6 +64,7 @@ module.exports = {
 			# Merge the document keywords with the site keywords
 			@site.keywords.concat(@document.keywords or []).join(', ')
 
+
 	# =================================
 	# DocPad Events
 
@@ -90,12 +81,18 @@ module.exports = {
 
 			# As we are now running in an event,
 			# ensure we are using the latest copy of the docpad configuraiton
+			# and fetch our urls from it
 			latestConfig = docpad.getConfig()
+			oldUrls = latestConfig.templateData.site.oldUrls or []
+			newUrl = latestConfig.templateData.site.url
 
-	# =================================
-  # Plugin Configuration
-  
-  plugins:
-    jade:
-      pretty: true
+			# Redirect any requests accessing one of our sites oldUrls to the new site url
+			server.use (req,res,next) ->
+				if req.headers.host in oldUrls
+					res.redirect(newUrl+req.url, 301)
+				else
+					next()
 }
+
+# Export our DocPad Configuration
+module.exports = docpadConfig
