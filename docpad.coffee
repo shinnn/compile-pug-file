@@ -94,8 +94,9 @@ module.exports = {
 
   # =================================
   # Plugin Configuration
-  
+
   plugins:
     jade:
       pretty: true
+      debug: true
 }

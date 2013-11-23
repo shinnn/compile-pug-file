@@ -1,0 +1,20 @@
+{
+  "name": "jade-coffee-grunt.docpad",
+  "version": "0.0.0",
+  "homepage": "https://github.com/shinnn/jade-coffee-grunt.docpad",
+  "authors": [
+    "Shinnosuke Watanabe <snnskwtnb@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "jquery1": "jquery#1"
+  }
+}
